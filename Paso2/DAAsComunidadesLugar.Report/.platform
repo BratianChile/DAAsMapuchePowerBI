@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "DAAsComunidadesLugar"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "40280dbe-e1ff-474f-beb9-1bda4df0d79a"
+  }
+}

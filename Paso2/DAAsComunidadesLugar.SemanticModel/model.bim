@@ -1,0 +1,2872 @@
+{
+  "compatibilityLevel": 1567,
+  "model": {
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"DAAsComunidadesIndigenas\",\"Errores en DAAsComunidadesIndigenas\",\"DAAsComunidadesIndigenas (2)\",\"Errores en DAAsComunidadesIndigenas (2)\",\"DAAsComunidadesIndigenas (3)\",\"Reporte_Registro_Comunidades_Co\",\"Errores en DAAsComunidadesIndigenas (3)\"]"
+      },
+      {
+        "name": "__PBI_TimeIntelligenceEnabled",
+        "value": "1"
+      },
+      {
+        "name": "PBIDesktopVersion",
+        "value": "2.128.751.0 (24.04)"
+      },
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
+    "culture": "es-CL",
+    "cultures": [
+      {
+        "name": "es-CL",
+        "linguisticMetadata": {
+          "content": {
+            "Language": "en-US",
+            "Version": "1.0.0"
+          },
+          "contentType": "json"
+        }
+      }
+    ],
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "expressions": [
+      {
+        "name": "Errores en DAAsComunidadesIndigenas",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegación"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "Origen = DAAsComunidadesIndigenas,",
+          "  #\"Errores de coincidencia detectados\" = let",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Origen, Table.ColumnsOfType(Origen, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
+          "    fieldNames = Record.FieldNames(recordTypeFields),",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"El tipo del valor no coincide con el tipo de la columna.\", Detail = v], fieldTypes{i}})",
+          "in",
+          "    Table.TransformColumns(Origen, pairs),",
+          "  #\"Índice agregado\" = Table.AddIndexColumn(#\"Errores de coincidencia detectados\", \"Número de fila\" ,1),",
+          "  #\"Conservar errores\" = Table.SelectRowsWithErrors(#\"Índice agregado\", {\"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"}),",
+          "  #\"Columnas reordenadas\" = Table.ReorderColumns(#\"Conservar errores\", {\"Número de fila\", \"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"})",
+          "in",
+          "  #\"Columnas reordenadas\""
+        ],
+        "kind": "m",
+        "lineageTag": "ad16bd87-cf69-49d3-9774-e7c5c43d17f8",
+        "queryGroup": "Errores en las consultas: 15-04-2024 11:28:37"
+      },
+      {
+        "name": "DAAsComunidadesIndigenas",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Origen = Excel.Workbook(File.Contents(\"C:\\Users\\Bratian\\Downloads\\Comun_Indigenas_LaAraucaníaCruzadoDerechos (1).xlsx\"), null, true),",
+          "    DAAsComunidadesIndigenas_Sheet = Origen{[Item=\"DAAsComunidadesIndigenas\",Kind=\"Sheet\"]}[Data],",
+          "    #\"Encabezados promovidos\" = Table.PromoteHeaders(DAAsComunidadesIndigenas_Sheet, [PromoteAllScalars=true]),",
+          "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"N°\", Int64.Type}, {\"Código de #(lf)Expediente\", type text}, {\"N° #(lf)Solicitud\", Int64.Type}, {\"Región\", type text}, {\"Provincia\", type text}, {\"Comuna\", type text}, {\"Nombre Solicitante\", type text}, {\"N° Personalidad Jurídica\", type any}, {\"N° Folio\", type any}, {\"Unidad de Resolución/ Oficio/ C.B.R.\", type text}, {\"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", type date}, {\"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", type text}, {\"Fecha Toma #(lf)Razón\", type date}, {\"Artículo #(lf)Transitorio\", type any}, {\"Tipo Derecho\", type text}, {\"Naturaleza del Agua\", type text}, {\"Clasificación Fuente\", type text}, {\"Uso del Agua\", type text}, {\"Cuenca \", type text}, {\"SubCuenca\", type text}, {\"SubSubCuenca\", type text}, {\"Fuente \", type text}, {\"Enero\", type number}, {\"Febrero\", type number}, {\"Marzo\", type number}, {\"Abril\", type number}, {\"Mayo\", type number}, {\"Junio\", type number}, {\"Julio \", type number}, {\"Agosto \", type number}, {\"Septiembre \", type number}, {\"Octubre\", type number}, {\"Noviembre \", type number}, {\"Diciembre  \", type number}, {\"Ejercicio del Derecho\", type text}, {\"Caudal #(lf)Anual#(lf)Prom #(lf)\", type number}, {\"Unidad de #(lf)Caudal\", type text}, {\"¿Caudal Promedio Anual?\", type text}, {\"Caudal Ecológico#(lf)(l/s)\", type number}, {\"¿Caudal Ecológico Promedio?\", type text}, {\"Acciones en el Cauce\", Int64.Type}, {\"Acciones en la Fuente\", Int64.Type}, {\"Volumen\", type number}, {\"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Captación#(lf)(m)\", Int64.Type}, {\"Huso\", Int64.Type}, {\"Datum\", Int64.Type}, {\"Latitud #(lf)Captación\", type text}, {\"Longitud #(lf)Captación\", type text}, {\"Datum_1\", type text}, {\"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"Latitud #(lf)Restitución\", type text}, {\"Longitud #(lf)Restitución\", type text}, {\"Referencia a puntos conocidos de captación\", type text}, {\"Referencia a puntos conocidos de restitución\", type any}, {\"Distancia\", Int64.Type}, {\"Unidad#(lf)Distancia\", type text}, {\"Desnivel#(lf)(m)\", Int64.Type}, {\"C.B.R.\", type text}, {\"Fojas\", type text}, {\"N° CBR\", Int64.Type}, {\"Año\", Int64.Type}, {\"Código Expediente#(lf)Antiguo\", type text}, {\"¿Posee #(lf)más de un #(lf)punto de captación?\", type any}, {\"N° Certificado/ Año\", type text}, {\"Tiene Renuncia\", type text}, {\"Tiene Transacción\", type text}, {\"Radio#(lf)(m)\", Int64.Type}, {\"Profundidad#(lf)(m)\", type number}})",
+          "in",
+          "    #\"Tipo cambiado\""
+        ],
+        "kind": "m",
+        "lineageTag": "9744c0b4-33c7-42dd-bb4c-915f63e2cf04"
+      },
+      {
+        "name": "Errores en DAAsComunidadesIndigenas (2)",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegación"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "Origen = #\"DAAsComunidadesIndigenas (2)\",",
+          "  #\"Errores de coincidencia detectados\" = let",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Origen, Table.ColumnsOfType(Origen, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
+          "    fieldNames = Record.FieldNames(recordTypeFields),",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"El tipo del valor no coincide con el tipo de la columna.\", Detail = v], fieldTypes{i}})",
+          "in",
+          "    Table.TransformColumns(Origen, pairs),",
+          "  #\"Índice agregado\" = Table.AddIndexColumn(#\"Errores de coincidencia detectados\", \"Número de fila\" ,1),",
+          "  #\"Conservar errores\" = Table.SelectRowsWithErrors(#\"Índice agregado\", {\"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"}),",
+          "  #\"Columnas reordenadas\" = Table.ReorderColumns(#\"Conservar errores\", {\"Número de fila\", \"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"})",
+          "in",
+          "  #\"Columnas reordenadas\""
+        ],
+        "kind": "m",
+        "lineageTag": "3ab6a56d-984b-4978-9ad6-ec3a742c7ddb",
+        "queryGroup": "Errores en las consultas: 15-04-2024 12:20:45"
+      },
+      {
+        "name": "DAAsComunidadesIndigenas (2)",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "    Origen = Excel.Workbook(File.Contents(\"C:\\Users\\Bratian\\Downloads\\Comun_Indigenas_LaAraucaníaCruzadoDerechos1.xlsx\"), null, true),",
+          "    DAAsComunidadesIndigenas_Sheet = Origen{[Item=\"DAAsComunidadesIndigenas\",Kind=\"Sheet\"]}[Data],",
+          "    #\"Encabezados promovidos\" = Table.PromoteHeaders(DAAsComunidadesIndigenas_Sheet, [PromoteAllScalars=true]),",
+          "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"N°\", Int64.Type}, {\"Código de #(lf)Expediente\", type text}, {\"N° #(lf)Solicitud\", Int64.Type}, {\"Región\", type text}, {\"Provincia\", type text}, {\"Comuna\", type text}, {\"Nombre Solicitante\", type text}, {\"N° Personalidad Jurídica\", type any}, {\"N° Folio\", type any}, {\"Unidad de Resolución/ Oficio/ C.B.R.\", type text}, {\"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", type date}, {\"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", type text}, {\"Fecha Toma #(lf)Razón\", type date}, {\"Artículo #(lf)Transitorio\", type any}, {\"Tipo Derecho\", type text}, {\"Naturaleza del Agua\", type text}, {\"Clasificación Fuente\", type text}, {\"Uso del Agua\", type text}, {\"Cuenca \", type text}, {\"SubCuenca\", type text}, {\"SubSubCuenca\", type text}, {\"Fuente \", type text}, {\"Enero\", type number}, {\"Febrero\", type number}, {\"Marzo\", type number}, {\"Abril\", type number}, {\"Mayo\", type number}, {\"Junio\", type number}, {\"Julio \", type number}, {\"Agosto \", type number}, {\"Septiembre \", type number}, {\"Octubre\", type number}, {\"Noviembre \", type number}, {\"Diciembre  \", type number}, {\"Ejercicio del Derecho\", type text}, {\"Caudal #(lf)Anual#(lf)Prom #(lf)\", type number}, {\"Unidad de #(lf)Caudal\", type text}, {\"¿Caudal Promedio Anual?\", type text}, {\"Caudal Ecológico#(lf)(l/s)\", type number}, {\"¿Caudal Ecológico Promedio?\", type text}, {\"Acciones en el Cauce\", Int64.Type}, {\"Acciones en la Fuente\", Int64.Type}, {\"Volumen\", type number}, {\"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Captación#(lf)(m)\", Int64.Type}, {\"Huso\", Int64.Type}, {\"Datum\", Int64.Type}, {\"Latitud #(lf)Captación\", type text}, {\"Longitud #(lf)Captación\", type text}, {\"Datum_1\", type text}, {\"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"Latitud #(lf)Restitución\", type text}, {\"Longitud #(lf)Restitución\", type text}, {\"Referencia a puntos conocidos de captación\", type text}, {\"Referencia a puntos conocidos de restitución\", type any}, {\"Distancia\", Int64.Type}, {\"Unidad#(lf)Distancia\", type text}, {\"Desnivel#(lf)(m)\", Int64.Type}, {\"C.B.R.\", type text}, {\"Fojas\", type text}, {\"N° CBR\", Int64.Type}, {\"Año\", Int64.Type}, {\"Código Expediente#(lf)Antiguo\", type text}, {\"¿Posee #(lf)más de un #(lf)punto de captación?\", type any}, {\"N° Certificado/ Año\", type text}, {\"Tiene Renuncia\", type text}, {\"Tiene Transacción\", type text}, {\"Radio#(lf)(m)\", Int64.Type}, {\"Profundidad#(lf)(m)\", type number}})",
+          "in",
+          "    #\"Tipo cambiado\""
+        ],
+        "kind": "m",
+        "lineageTag": "609d13ce-4d3d-4f06-9d03-3dd4c6ea3157"
+      },
+      {
+        "name": "Errores en DAAsComunidadesIndigenas (3)",
+        "annotations": [
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegación"
+          },
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "expression": [
+          "let",
+          "Origen = #\"DAAsComunidadesIndigenas (3)\",",
+          "  #\"Errores de coincidencia detectados\" = let",
+          "    tableWithOnlyPrimitiveTypes = Table.SelectColumns(Origen, Table.ColumnsOfType(Origen, {type nullable number, type nullable text, type nullable logical, type nullable date, type nullable datetime, type nullable datetimezone, type nullable time, type nullable duration})),",
+          "    recordTypeFields = Type.RecordFields(Type.TableRow(Value.Type(tableWithOnlyPrimitiveTypes))),",
+          "    fieldNames = Record.FieldNames(recordTypeFields),",
+          "    fieldTypes = List.Transform(Record.ToList(recordTypeFields), each [Type]),",
+          "    pairs = List.Transform(List.Positions(fieldNames), (i) => {fieldNames{i}, (v) => if v = null or Value.Is(v, fieldTypes{i}) then v else error [Message = \"El tipo del valor no coincide con el tipo de la columna.\", Detail = v], fieldTypes{i}})",
+          "in",
+          "    Table.TransformColumns(Origen, pairs),",
+          "  #\"Índice agregado\" = Table.AddIndexColumn(#\"Errores de coincidencia detectados\", \"Número de fila\" ,1),",
+          "  #\"Conservar errores\" = Table.SelectRowsWithErrors(#\"Índice agregado\", {\"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"}),",
+          "  #\"Columnas reordenadas\" = Table.ReorderColumns(#\"Conservar errores\", {\"Número de fila\", \"N°\", \"Código de #(lf)Expediente\", \"N° #(lf)Solicitud\", \"Región\", \"Provincia\", \"Comuna\", \"Nombre Solicitante\", \"N° Personalidad Jurídica\", \"N° Folio\", \"Unidad de Resolución/ Oficio/ C.B.R.\", \"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", \"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", \"Fecha Toma #(lf)Razón\", \"Artículo #(lf)Transitorio\", \"Tipo Derecho\", \"Naturaleza del Agua\", \"Clasificación Fuente\", \"Uso del Agua\", \"Cuenca \", \"SubCuenca\", \"SubSubCuenca\", \"Fuente \", \"Enero\", \"Febrero\", \"Marzo\", \"Abril\", \"Mayo\", \"Junio\", \"Julio \", \"Agosto \", \"Septiembre \", \"Octubre\", \"Noviembre \", \"Diciembre  \", \"Ejercicio del Derecho\", \"Caudal #(lf)Anual#(lf)Prom #(lf)\", \"Unidad de #(lf)Caudal\", \"¿Caudal Promedio Anual?\", \"Caudal Ecológico#(lf)(l/s)\", \"¿Caudal Ecológico Promedio?\", \"Acciones en el Cauce\", \"Acciones en la Fuente\", \"Volumen\", \"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", \"UTM #(lf)Este #(lf)Captación#(lf)(m)\", \"Huso\", \"Datum\", \"Latitud #(lf)Captación\", \"Longitud #(lf)Captación\", \"Datum_1\", \"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", \"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", \"Latitud #(lf)Restitución\", \"Longitud #(lf)Restitución\", \"Referencia a puntos conocidos de captación\", \"Referencia a puntos conocidos de restitución\", \"Distancia\", \"Unidad#(lf)Distancia\", \"Desnivel#(lf)(m)\", \"C.B.R.\", \"Fojas\", \"N° CBR\", \"Año\", \"Código Expediente#(lf)Antiguo\", \"¿Posee #(lf)más de un #(lf)punto de captación?\", \"N° Certificado/ Año\", \"Tiene Renuncia\", \"Tiene Transacción\", \"Radio#(lf)(m)\", \"Profundidad#(lf)(m)\"})",
+          "in",
+          "  #\"Columnas reordenadas\""
+        ],
+        "kind": "m",
+        "lineageTag": "db056efa-1822-4fa4-98d7-ce0517ca2633",
+        "queryGroup": "Errores en las consultas: 15-04-2024 12:29:10"
+      }
+    ],
+    "queryGroups": [
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "0"
+          }
+        ],
+        "description": "Errores en las consultas cargadas en 15-04-2024 11:28:37.",
+        "folder": "Errores en las consultas: 15-04-2024 11:28:37"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "1"
+          }
+        ],
+        "description": "Errores en las consultas cargadas en 15-04-2024 12:20:45.",
+        "folder": "Errores en las consultas: 15-04-2024 12:20:45"
+      },
+      {
+        "annotations": [
+          {
+            "name": "PBI_QueryGroupOrder",
+            "value": "2"
+          }
+        ],
+        "description": "Errores en las consultas cargadas en 15-04-2024 12:29:10.",
+        "folder": "Errores en las consultas: 15-04-2024 12:29:10"
+      }
+    ],
+    "relationships": [
+      {
+        "name": "bc037d75-d2d7-4f68-a88e-fa82922d572d",
+        "fromColumn": "Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.",
+        "fromTable": "DAAsComunidadesIndigenas (3)",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_ef716e8a-df2e-4bf8-b789-ec84fa0fff87"
+      },
+      {
+        "name": "94f046b4-6dad-4740-9065-3fd0a9da19d0",
+        "fromColumn": "Fecha Toma Razón",
+        "fromTable": "DAAsComunidadesIndigenas (3)",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_90f9142e-a279-4d89-aad2-86c4e96cd2e2"
+      },
+      {
+        "name": "62d004da-0e2e-42b6-9f09-06d74bc27b77",
+        "fromColumn": "Fecha Constitución",
+        "fromTable": "Reporte_Registro_Comunidades_Co",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_f5fc1e34-a5e9-4932-b696-cd3ab917a38e"
+      },
+      {
+        "name": "8bbced2e-7b5a-4550-82dc-72c5b3fd5f7f",
+        "fromColumn": "Fecha Renovación Directiva",
+        "fromTable": "Reporte_Registro_Comunidades_Co",
+        "joinOnDateBehavior": "datePartOnly",
+        "toColumn": "Date",
+        "toTable": "LocalDateTable_cf05f95e-28dd-4ff5-985c-ff219663170b"
+      }
+    ],
+    "sourceQueryCulture": "es-CL",
+    "tables": [
+      {
+        "name": "DateTableTemplate_562d5ecf-d7f7-4a1c-91f6-fd2420aea446",
+        "annotations": [
+          {
+            "name": "__PBI_TemplateDateTable",
+            "value": "true"
+          },
+          {
+            "name": "DefaultItem",
+            "value": "DateHierarchy"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "ff835b10-b376-4c7b-9855-ab117ad5b296",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "8022e567-1fa4-426d-bc85-7e90abbb67b7",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroMes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "4cc810ef-3fca-4ae4-8db8-66a723f3374c",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "7bbcaec5-0809-40cc-8990-4120e64cea98",
+            "sortByColumn": "NroMes",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NroMes] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "a35f43d1-f715-4ff0-a8d6-789b179e6acc",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim. \" & [NroTrimestre]",
+            "isHidden": true,
+            "lineageTag": "ceb8c211-b043-4e98-8bc7-a0f7782ce20d",
+            "sortByColumn": "NroTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Día",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "3ed09c97-27f6-4aaa-a94e-4a8e890cd327",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía de fechas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Año",
+                "column": "Año",
+                "lineageTag": "6b09f65f-088e-4e05-a383-219a2a44defb",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "3c6cef36-fa6d-4189-a8c2-7ed84b18971d",
+                "ordinal": 1
+              },
+              {
+                "name": "Mes",
+                "column": "Mes",
+                "lineageTag": "68a74b3b-e4f0-4aac-9993-8822d5903426",
+                "ordinal": 2
+              },
+              {
+                "name": "Día",
+                "column": "Día",
+                "lineageTag": "3ce8eb36-7b65-4cf1-bc9c-a95eee622a9b",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "69a80522-5126-4392-a9ad-7a3db3546560"
+          }
+        ],
+        "isHidden": true,
+        "isPrivate": true,
+        "lineageTag": "4729cae8-2121-4954-9731-023d75a73264",
+        "partitions": [
+          {
+            "name": "DateTableTemplate_562d5ecf-d7f7-4a1c-91f6-fd2420aea446",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(2015,1,1), Date(2015,1,1))",
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DAAsComunidadesIndigenas (3)",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "columns": [
+          {
+            "name": "N°",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "14e8d1aa-822c-4181-8311-0c9da9957a84",
+            "sourceColumn": "N°",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Código de Expediente",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "94836c8a-1cb2-42c6-bbab-98a626f52a3e",
+            "sourceColumn": "Código de Expediente",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Solicitud",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "e8297242-637e-45a4-a2f8-3aab4e501ef2",
+            "sourceColumn": "N° Solicitud",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Región",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "1048a6c5-dd91-413b-9f12-b97f79276d4f",
+            "sourceColumn": "Región",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Provincia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "35f3a1f5-1e62-45a8-a892-6f29443ffda2",
+            "sourceColumn": "Provincia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Comuna",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cef1a584-57b6-4868-9644-501968fa6bf7",
+            "sourceColumn": "Comuna",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nombre Solicitante",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a5b0e688-3935-4707-ae45-3240c196da24",
+            "sourceColumn": "Nombre Solicitante",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Personalidad Jurídica",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "61131f01-ad27-42ae-93ed-25e0f1d57276",
+            "sourceColumn": "N° Personalidad Jurídica",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Folio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7c709abe-d47f-4203-b4ba-3e8ee264f2ca",
+            "sourceColumn": "N° Folio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Unidad de Resolución/ Oficio/ C.B.R.",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b8955cc0-2ddc-4c1b-b0c5-1799b399c38d",
+            "sourceColumn": "Unidad de Resolución/ Oficio/ C.B.R.",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "6eac7460-a868-4c77-a0db-a3c593dc2d2b",
+            "sourceColumn": "Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variación",
+                "defaultHierarchy": {
+                  "hierarchy": "Jerarquía de fechas",
+                  "table": "LocalDateTable_ef716e8a-df2e-4bf8-b789-ec84fa0fff87"
+                },
+                "isDefault": true,
+                "relationship": "bc037d75-d2d7-4f68-a88e-fa82922d572d"
+              }
+            ]
+          },
+          {
+            "name": "N° Resolución/ Oficio/ Fojas | N° CBR",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9455ca7e-bcd5-4066-8f12-7edca99fe0c5",
+            "sourceColumn": "N° Resolución/ Oficio/ Fojas | N° CBR",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fecha Toma Razón",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "4d4a6cd7-b947-4a0f-bbe6-199b45dac061",
+            "sourceColumn": "Fecha Toma Razón",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variación",
+                "defaultHierarchy": {
+                  "hierarchy": "Jerarquía de fechas",
+                  "table": "LocalDateTable_90f9142e-a279-4d89-aad2-86c4e96cd2e2"
+                },
+                "isDefault": true,
+                "relationship": "94f046b4-6dad-4740-9065-3fd0a9da19d0"
+              }
+            ]
+          },
+          {
+            "name": "Artículo Transitorio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "27cfc4e0-097f-40ac-b2a1-a553efc24cd9",
+            "sourceColumn": "Artículo Transitorio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tipo Derecho",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "0093fb0e-4823-4cee-b712-5118bfc2395c",
+            "sourceColumn": "Tipo Derecho",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Naturaleza del Agua",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "b240812d-ec38-454e-a68f-ad6d6ae1aa98",
+            "sourceColumn": "Naturaleza del Agua",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Clasificación Fuente",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e868158f-718b-4fb7-80fe-45b07380f213",
+            "sourceColumn": "Clasificación Fuente",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Uso del Agua",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "e04bff52-72e1-4424-9b35-91372188d168",
+            "sourceColumn": "Uso del Agua",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Cuenca ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "57022e7a-6417-43e2-9027-d99bb1141d5b",
+            "sourceColumn": "Cuenca ",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SubCuenca",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3e77fc1e-4b59-490e-a462-444a14989401",
+            "sourceColumn": "SubCuenca",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "SubSubCuenca",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "a496f0e2-4037-44c3-bf6d-1126e2a9afe8",
+            "sourceColumn": "SubSubCuenca",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fuente ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "70275eab-e5cc-434e-b5f6-7211103f2ae4",
+            "sourceColumn": "Fuente ",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Enero",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7f87800d-bc2f-414b-82a7-9ad3729781a0",
+            "sourceColumn": "Enero",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Febrero",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "e57f61bf-2bb4-4efc-acb2-5a18aa01c188",
+            "sourceColumn": "Febrero",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Marzo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "58cb438d-01e7-4b73-b941-2b1962145959",
+            "sourceColumn": "Marzo",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Abril",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "29a5ae81-9ec2-4b29-a7cf-528497ce2098",
+            "sourceColumn": "Abril",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Mayo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "2db3b153-254e-4b30-aee3-9f5d7f634dce",
+            "sourceColumn": "Mayo",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Junio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "c22d585a-530b-4435-8fc2-4c06083f7ad1",
+            "sourceColumn": "Junio",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Julio ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "b45d2959-f1bd-4147-aa77-acb80f0830a8",
+            "sourceColumn": "Julio ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Agosto ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "7f4a2c14-59cd-4c54-abd9-6a9a6b19dc36",
+            "sourceColumn": "Agosto ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Septiembre ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "857f5578-87ef-4002-8942-7c6203dbce75",
+            "sourceColumn": "Septiembre ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Octubre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1c3c4d86-5592-46df-a250-be3911f49776",
+            "sourceColumn": "Octubre",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Noviembre ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "30d2e606-cff5-48cf-8e83-0473f4b23e1e",
+            "sourceColumn": "Noviembre ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Diciembre  ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "a87f3874-8f4b-48f3-981f-24c998313805",
+            "sourceColumn": "Diciembre  ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Ejercicio del Derecho",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "70a5a28a-80b2-4e69-9df9-8d68e4a781aa",
+            "sourceColumn": "Ejercicio del Derecho",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Caudal AnualProm ",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "4a9e35cc-8665-436d-a308-28aa22061670",
+            "sourceColumn": "Caudal AnualProm ",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Unidad de Caudal",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "578a5ef3-a377-42c0-be65-7b12b62f6372",
+            "sourceColumn": "Unidad de Caudal",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "¿Caudal Promedio Anual?",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "71e33557-5b4f-4b60-b8a9-011ae47e4b39",
+            "sourceColumn": "¿Caudal Promedio Anual?",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Caudal Ecológico(l/s)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "6b11d9a7-9787-4c5b-af98-15e86bd4dfde",
+            "sourceColumn": "Caudal Ecológico(l/s)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "¿Caudal Ecológico Promedio?",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3b10f626-1d79-40a1-b836-76b0d8650f44",
+            "sourceColumn": "¿Caudal Ecológico Promedio?",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Acciones en el Cauce",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "39d6486e-2b9c-4263-a441-07d055d6751a",
+            "sourceColumn": "Acciones en el Cauce",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Acciones en la Fuente",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "b4e4296a-0f4e-43fc-835f-dfca51491f3d",
+            "sourceColumn": "Acciones en la Fuente",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Volumen",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "ccccfb06-bb64-4971-ac81-1cb242e9f650",
+            "sourceColumn": "Volumen",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "UTM Norte Captación(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "fba542d0-025c-4e95-a0f2-29f4163d4132",
+            "sourceColumn": "UTM Norte Captación(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "UTM Este Captación(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "bd15be44-cfe9-4bd4-a7c1-06cdcd3ea030",
+            "sourceColumn": "UTM Este Captación(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Huso",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "81c7c3b4-ecc6-4e04-b089-a625d8a90b10",
+            "sourceColumn": "Huso",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Datum",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d7e5d39b-f15c-4e09-9062-816c7f876fdd",
+            "sourceColumn": "Datum",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Latitud Captación",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "db903435-f9a0-44c3-bceb-4258f1da257e",
+            "sourceColumn": "Latitud Captación",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Longitud Captación",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "636d0ced-5041-489b-bee8-4b7150d6493b",
+            "sourceColumn": "Longitud Captación",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Datum_1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9a7a47c4-8a0f-45c3-b85a-eb27761f3bf0",
+            "sourceColumn": "Datum_1",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "UTM Norte Restitución(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "35f35c99-dca0-4e7e-9fbc-7aa90565c211",
+            "sourceColumn": "UTM Norte Restitución(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "UTM Este Restitución(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d65cc538-ab33-4e50-b6d0-a1873a39976f",
+            "sourceColumn": "UTM Este Restitución(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Latitud Restitución",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "14770b98-7cbd-4650-bd13-ad858abcd3c0",
+            "sourceColumn": "Latitud Restitución",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Longitud Restitución",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9786632a-10b8-49fe-a52c-9e1d86ef8cb3",
+            "sourceColumn": "Longitud Restitución",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Referencia a puntos conocidos de captación",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3e8bee17-e8ea-4e82-82dd-1df67869b836",
+            "sourceColumn": "Referencia a puntos conocidos de captación",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Referencia a puntos conocidos de restitución",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "469b2c4b-916e-4b5e-a33f-941c5332dc54",
+            "sourceColumn": "Referencia a puntos conocidos de restitución",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Distancia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d43b0ab3-ae66-4459-8e41-f6933fa6caf7",
+            "sourceColumn": "Distancia",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "UnidadDistancia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cdb1cf95-5732-4798-8812-0956be56ffef",
+            "sourceColumn": "UnidadDistancia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Desnivel(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "ff72841a-f7d7-45fe-87d2-90804ecf52af",
+            "sourceColumn": "Desnivel(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "C.B.R.",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "3790975a-0024-4c94-b049-d20660d8e8e1",
+            "sourceColumn": "C.B.R.",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Fojas",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "f2e5a691-0834-45fb-85c3-963c25683c6f",
+            "sourceColumn": "Fojas",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° CBR",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "f3d70a3a-5ce4-40c6-924a-b46f6c404dcf",
+            "sourceColumn": "N° CBR",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "2246194f-947f-48f9-973a-4eae0f67f6fd",
+            "sourceColumn": "Año",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Código ExpedienteAntiguo",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "46fffe6a-fa45-464a-a977-ba637035a546",
+            "sourceColumn": "Código ExpedienteAntiguo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "¿Posee más de un punto de captación?",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "47d59928-9977-4adb-b098-e39e501e7fc3",
+            "sourceColumn": "¿Posee más de un punto de captación?",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Certificado/ Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "767fcd18-6e7c-435e-98a2-0fdbd637400d",
+            "sourceColumn": "N° Certificado/ Año",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tiene Renuncia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "737dee37-6436-4175-8fa6-86375045485c",
+            "sourceColumn": "Tiene Renuncia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tiene Transacción",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "bcc576d9-1c9b-4c23-82cd-45b0b1397f24",
+            "sourceColumn": "Tiene Transacción",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Radio(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "049a97d5-fee7-4851-8128-c2fff045dd42",
+            "sourceColumn": "Radio(m)",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Profundidad(m)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "lineageTag": "1bb9099f-1974-412b-9f79-2a18d70edc84",
+            "sourceColumn": "Profundidad(m)",
+            "summarizeBy": "sum"
+          }
+        ],
+        "lineageTag": "c633674b-953b-4703-9f71-03d0f9bada8c",
+        "measures": [
+          {
+            "name": "Total de Recuento de Comuna para Comuna",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tCOUNTA('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALL('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForAllCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "13530d59-1369-44ce-b9a5-73236aff67bd"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 2",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tCOUNTA('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "5887263d-3b89-4324-9b77-a7fdb5d28a69"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 3",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tCOUNTA('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "45d403fe-ac29-4c49-9aa3-a2d161bd1dd0"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 4",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tCOUNTA('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "82df19f0-f50b-4771-902f-4b0a47b0accc"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 5",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tCOUNTA('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "838d1bdc-7810-4858-8100-98cfd60576a2"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 6",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tDISTINCTCOUNT('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "c06fcb23-fb08-4c8f-9a07-31bcc34876e5"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 7",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tDISTINCTCOUNT('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "87238758-a37e-4389-83d5-7e5ae4b5823f"
+          },
+          {
+            "name": "Total de Recuento de Comuna para Comuna 8",
+            "changedProperties": [
+              {
+                "property": "FormatString"
+              }
+            ],
+            "expression": [
+              "",
+              "CALCULATE(",
+              "\tDISTINCTCOUNT('DAAsComunidadesIndigenas (3)'[Comuna]),",
+              "\tALLSELECTED('DAAsComunidadesIndigenas (3)'[Comuna])",
+              ")"
+            ],
+            "extendedProperties": [
+              {
+                "name": "MeasureTemplate",
+                "type": "json",
+                "value": {
+                  "daxTemplateName": "TotalForSelectedCategory",
+                  "version": 0
+                }
+              }
+            ],
+            "formatString": "0",
+            "lineageTag": "aa0fd491-e3c5-4e16-a32e-5cd9e292ff11"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DAAsComunidadesIndigenas (3)",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Origen = Excel.Workbook(File.Contents(\"C:\\Users\\Bratian\\Downloads\\Comun_Indigenas_LaAraucaníaCruzadoDerechos1.xlsx\"), null, true),",
+                "    DAAsComunidadesIndigenas_Sheet = Origen{[Item=\"DAAsComunidadesIndigenas\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Encabezados promovidos\" = Table.PromoteHeaders(DAAsComunidadesIndigenas_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"N°\", Int64.Type}, {\"Código de #(lf)Expediente\", type text}, {\"N° #(lf)Solicitud\", Int64.Type}, {\"Región\", type text}, {\"Provincia\", type text}, {\"Comuna\", type text}, {\"Nombre Solicitante\", type text}, {\"N° Personalidad Jurídica\", type any}, {\"N° Folio\", type any}, {\"Unidad de Resolución/ Oficio/ C.B.R.\", type text}, {\"Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.\", type date}, {\"N° Resolución/ #(lf)Oficio/ Fojas | #(lf)N° CBR\", type text}, {\"Fecha Toma #(lf)Razón\", type date}, {\"Artículo #(lf)Transitorio\", type any}, {\"Tipo Derecho\", type text}, {\"Naturaleza del Agua\", type text}, {\"Clasificación Fuente\", type text}, {\"Uso del Agua\", type text}, {\"Cuenca \", type text}, {\"SubCuenca\", type text}, {\"SubSubCuenca\", type text}, {\"Fuente \", type text}, {\"Enero\", type number}, {\"Febrero\", type number}, {\"Marzo\", type number}, {\"Abril\", type number}, {\"Mayo\", type number}, {\"Junio\", type number}, {\"Julio \", type number}, {\"Agosto \", type number}, {\"Septiembre \", type number}, {\"Octubre\", type number}, {\"Noviembre \", type number}, {\"Diciembre  \", type number}, {\"Ejercicio del Derecho\", type text}, {\"Caudal #(lf)Anual#(lf)Prom #(lf)\", type number}, {\"Unidad de #(lf)Caudal\", type text}, {\"¿Caudal Promedio Anual?\", type text}, {\"Caudal Ecológico#(lf)(l/s)\", type number}, {\"¿Caudal Ecológico Promedio?\", type text}, {\"Acciones en el Cauce\", Int64.Type}, {\"Acciones en la Fuente\", Int64.Type}, {\"Volumen\", type number}, {\"UTM #(lf)Norte #(lf)Captación#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Captación#(lf)(m)\", Int64.Type}, {\"Huso\", Int64.Type}, {\"Datum\", Int64.Type}, {\"Latitud #(lf)Captación\", type text}, {\"Longitud #(lf)Captación\", type text}, {\"Datum_1\", type text}, {\"UTM #(lf)Norte #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"UTM #(lf)Este #(lf)Restitución#(lf)(m)\", Int64.Type}, {\"Latitud #(lf)Restitución\", type text}, {\"Longitud #(lf)Restitución\", type text}, {\"Referencia a puntos conocidos de captación\", type text}, {\"Referencia a puntos conocidos de restitución\", type any}, {\"Distancia\", Int64.Type}, {\"Unidad#(lf)Distancia\", type text}, {\"Desnivel#(lf)(m)\", Int64.Type}, {\"C.B.R.\", type text}, {\"Fojas\", type text}, {\"N° CBR\", Int64.Type}, {\"Año\", Int64.Type}, {\"Código Expediente#(lf)Antiguo\", type text}, {\"¿Posee #(lf)más de un #(lf)punto de captación?\", type any}, {\"N° Certificado/ Año\", type text}, {\"Tiene Renuncia\", type text}, {\"Tiene Transacción\", type text}, {\"Radio#(lf)(m)\", Int64.Type}, {\"Profundidad#(lf)(m)\", type number}})",
+                "in",
+                "    #\"Tipo cambiado\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_ef716e8a-df2e-4bf8-b789-ec84fa0fff87",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "89135ad4-cd54-4bd6-993b-946ad07fd314",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "0752197c-6d38-4698-ac00-6b870a048958",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroMes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "426f1052-4d08-445f-89f9-bb50d4bbf396",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "b1e1aff4-50ab-4455-a527-adf67b909d02",
+            "sortByColumn": "NroMes",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NroMes] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "9c9345f7-2f92-48e8-8751-1355f0beebf6",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim. \" & [NroTrimestre]",
+            "isHidden": true,
+            "lineageTag": "7c5b8c6f-dee7-49eb-9203-5a9d26746035",
+            "sortByColumn": "NroTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Día",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "a65d90f1-74d4-40e2-95a7-089548c28550",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía de fechas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Año",
+                "column": "Año",
+                "lineageTag": "e383a7e8-2160-4726-8c5e-a448d7eb6cfc",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "86a23b9a-144c-44e7-a8fd-ddab44c450c3",
+                "ordinal": 1
+              },
+              {
+                "name": "Mes",
+                "column": "Mes",
+                "lineageTag": "d3acd1d5-db29-448c-9e29-15016cc36a55",
+                "ordinal": 2
+              },
+              {
+                "name": "Día",
+                "column": "Día",
+                "lineageTag": "2aaf4ec3-3824-42ad-ac33-64e662b23994",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "ba9ef6d9-86be-439b-8461-411e079922d0"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "0b5e827b-b4b2-492f-b008-ac95df45a883",
+        "partitions": [
+          {
+            "name": "LocalDateTable_ef716e8a-df2e-4bf8-b789-ec84fa0fff87",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('DAAsComunidadesIndigenas (3)'[Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.])), 1, 1), Date(Year(MAX('DAAsComunidadesIndigenas (3)'[Fecha de Resolución/ Envío al Juez/ Inscripción C.B.R.])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_90f9142e-a279-4d89-aad2-86c4e96cd2e2",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "a903ed16-b315-48d1-a1b9-01e456785ea2",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "046db461-456f-45fe-a2d4-790ae122b7f5",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroMes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "39e12015-bf94-4a30-91a3-baa9bd999975",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "9ca45989-9330-4868-86cb-0a305574e43c",
+            "sortByColumn": "NroMes",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NroMes] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "3548cd26-8809-43bb-aba2-0dfc443f26b2",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim. \" & [NroTrimestre]",
+            "isHidden": true,
+            "lineageTag": "129bdca7-111f-46ee-a392-b98e5eeada69",
+            "sortByColumn": "NroTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Día",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "b029063d-ed92-4d27-be35-d838dd901f26",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía de fechas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Año",
+                "column": "Año",
+                "lineageTag": "5f9408eb-133b-4e88-8d5e-ad50c8cb4fd7",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "e96db330-33d3-4db1-8248-74677d4f4738",
+                "ordinal": 1
+              },
+              {
+                "name": "Mes",
+                "column": "Mes",
+                "lineageTag": "89f750d3-3990-46ec-82b8-64f79ccd954f",
+                "ordinal": 2
+              },
+              {
+                "name": "Día",
+                "column": "Día",
+                "lineageTag": "7c001950-6759-44cb-ab69-9553c9ec4931",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "02cdabc3-1211-4f0e-90d5-e1a0e91f1e55"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "881e9f6e-fd09-4226-aeaf-4267e48500f7",
+        "partitions": [
+          {
+            "name": "LocalDateTable_90f9142e-a279-4d89-aad2-86c4e96cd2e2",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('DAAsComunidadesIndigenas (3)'[Fecha Toma Razón])), 1, 1), Date(Year(MAX('DAAsComunidadesIndigenas (3)'[Fecha Toma Razón])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "Reporte_Registro_Comunidades_Co",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navegación"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Región",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9d4dbeef-1f7a-42b0-920e-66ea2da97ff6",
+            "sourceColumn": "Región",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Provincia",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "9d08e8e0-0454-4150-9ab4-77e6f8fa6c96",
+            "sourceColumn": "Provincia",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Comuna",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "8f334d62-2030-4a6b-b5d9-859d93da45ad",
+            "sourceColumn": "Comuna",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Oficina Conadi",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "2a7fb5dc-1d75-48ec-b07e-6bb8a82bd682",
+            "sourceColumn": "Oficina Conadi",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Personalidad Jurídica",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "91edc87c-7bb8-4b98-8d60-e0b5befa2808",
+            "sourceColumn": "N° Personalidad Jurídica",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Tipo Agrupación",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "62619483-9ee8-4b04-be7e-f01ba9061a6e",
+            "sourceColumn": "Tipo Agrupación",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Nombre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "d5df3803-8109-4c01-8c3e-67e1e116db96",
+            "sourceColumn": "Nombre",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Personalidad Jurídica_1",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "195c8016-52f3-4839-8234-8b1ef409913d",
+            "sourceColumn": "N° Personalidad Jurídica_1",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "N° Folio",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "cb116f86-4820-42dc-9259-5b129da167e5",
+            "sourceColumn": "N° Folio",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Sector",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "c3f18956-0684-41f6-966a-38af6630bcc2",
+            "sourceColumn": "Sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Tipo Sector",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "18c7e113-cb96-4683-932e-9286b330df05",
+            "sourceColumn": "Tipo Sector",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Folio_2",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "7e58bcba-878f-4900-bef7-470a38c7407e",
+            "sourceColumn": "N° Folio_2",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "N° Familias",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "9a6142b1-c3b8-4d14-96e5-a554b51beb64",
+            "sourceColumn": "N° Familias",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "N° Socios",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "88651b63-a12b-4001-8ede-db9363629d86",
+            "sourceColumn": "N° Socios",
+            "summarizeBy": "sum"
+          },
+          {
+            "name": "Fecha Constitución",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "b99226de-e875-46a0-86ef-e7791d34a9bd",
+            "sourceColumn": "Fecha Constitución",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variación",
+                "defaultHierarchy": {
+                  "hierarchy": "Jerarquía de fechas",
+                  "table": "LocalDateTable_f5fc1e34-a5e9-4932-b696-cd3ab917a38e"
+                },
+                "isDefault": true,
+                "relationship": "62d004da-0e2e-42b6-9f09-06d74bc27b77"
+              }
+            ]
+          },
+          {
+            "name": "Fecha Renovación Directiva",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Date"
+              }
+            ],
+            "dataType": "dateTime",
+            "formatString": "Long Date",
+            "lineageTag": "604895d4-e2b6-47d0-ab24-ceeffb2d9e62",
+            "sourceColumn": "Fecha Renovación Directiva",
+            "summarizeBy": "none",
+            "variations": [
+              {
+                "name": "Variación",
+                "defaultHierarchy": {
+                  "hierarchy": "Jerarquía de fechas",
+                  "table": "LocalDateTable_cf05f95e-28dd-4ff5-985c-ff219663170b"
+                },
+                "isDefault": true,
+                "relationship": "8bbced2e-7b5a-4550-82dc-72c5b3fd5f7f"
+              }
+            ]
+          },
+          {
+            "name": "Estado Directiva",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "078c75c7-6c4c-43fe-aa24-2d815751337a",
+            "sourceColumn": "Estado Directiva",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Pueblo Originario",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "befc77d0-7bb4-4061-b412-ac6126adf217",
+            "sourceColumn": "Pueblo Originario",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Estado P.J.",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "lineageTag": "25d65d90-2e8a-4bbc-a18b-8edc3e0f4f7e",
+            "sourceColumn": "Estado P.J.",
+            "summarizeBy": "none"
+          }
+        ],
+        "lineageTag": "8552e3e8-7845-40b0-8894-0d22aa13914c",
+        "partitions": [
+          {
+            "name": "Reporte_Registro_Comunidades_Co",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Origen = Excel.Workbook(File.Contents(\"C:\\Users\\Bratian\\Downloads\\Comun_Indigenas_LaAraucaníaCruzadoDerechos1.xlsx\"), null, true),",
+                "    Reporte_Registro_Comunidades_Co_Sheet = Origen{[Item=\"Reporte_Registro_Comunidades_Co\",Kind=\"Sheet\"]}[Data],",
+                "    #\"Encabezados promovidos\" = Table.PromoteHeaders(Reporte_Registro_Comunidades_Co_Sheet, [PromoteAllScalars=true]),",
+                "    #\"Tipo cambiado\" = Table.TransformColumnTypes(#\"Encabezados promovidos\",{{\"Región\", type text}, {\"Provincia\", type text}, {\"Comuna\", type text}, {\"Oficina Conadi\", type text}, {\"N° Personalidad Jurídica\", Int64.Type}, {\"Tipo Agrupación\", type text}, {\"Nombre\", type text}, {\"N° Personalidad Jurídica_1\", Int64.Type}, {\"N° Folio\", type text}, {\"Sector\", type text}, {\"Tipo Sector\", type text}, {\"N° Folio_2\", type text}, {\"N° Familias\", Int64.Type}, {\"N° Socios\", Int64.Type}, {\"Fecha Constitución\", type date}, {\"Fecha Renovación Directiva\", type date}, {\"Estado Directiva\", type text}, {\"Pueblo Originario\", type text}, {\"Estado P.J.\", type text}, {\"Column20\", type any}, {\"Column21\", type any}, {\"Column22\", type any}, {\"Column23\", type any}, {\"Column24\", type any}, {\"Column25\", type any}, {\"Column26\", type any}, {\"Column27\", type any}}),",
+                "    #\"Columnas quitadas\" = Table.RemoveColumns(#\"Tipo cambiado\",{\"Column27\", \"Column26\", \"Column25\", \"Column24\", \"Column23\", \"Column22\", \"Column21\", \"Column20\"})",
+                "in",
+                "    #\"Columnas quitadas\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "LocalDateTable_f5fc1e34-a5e9-4932-b696-cd3ab917a38e",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "60097c4d-ecb6-4462-99a3-fd34902ef8d2",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "a310f830-a3ee-4bad-86e3-a8c60cf2ae4b",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroMes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "681c022b-9020-4bc6-b4a6-a50755ab88bc",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "958aa472-ec7e-40cb-a24b-b2f6722e7f36",
+            "sortByColumn": "NroMes",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NroMes] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "4b87f418-ff3e-46a1-86d2-8bb6c3467b5d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim. \" & [NroTrimestre]",
+            "isHidden": true,
+            "lineageTag": "58c6309e-8a1b-434a-be0b-bf037d87b28b",
+            "sortByColumn": "NroTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Día",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "23bcc3e9-e577-4f19-b8e4-a1d0161b0bf4",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía de fechas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Año",
+                "column": "Año",
+                "lineageTag": "c0f6d166-3da3-4126-8232-92ce46a9f709",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "0cd50733-9189-41ee-a2c4-3b489776a585",
+                "ordinal": 1
+              },
+              {
+                "name": "Mes",
+                "column": "Mes",
+                "lineageTag": "12509619-d3cb-4c00-afe0-8c0c3cf6df51",
+                "ordinal": 2
+              },
+              {
+                "name": "Día",
+                "column": "Día",
+                "lineageTag": "5315a757-fdaf-4777-aec5-37995968a69f",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "878d06df-1b1a-4df6-945f-b28176d22918"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "111fcf05-faf3-4546-be61-3d41c5fda1e0",
+        "partitions": [
+          {
+            "name": "LocalDateTable_f5fc1e34-a5e9-4932-b696-cd3ab917a38e",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Reporte_Registro_Comunidades_Co'[Fecha Constitución])), 1, 1), Date(Year(MAX('Reporte_Registro_Comunidades_Co'[Fecha Constitución])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      },
+      {
+        "name": "LocalDateTable_cf05f95e-28dd-4ff5-985c-ff219663170b",
+        "annotations": [
+          {
+            "name": "__PBI_LocalDateTable",
+            "value": "true"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              }
+            ],
+            "dataCategory": "PaddedDateTableDates",
+            "dataType": "dateTime",
+            "formatString": "General Date",
+            "isHidden": true,
+            "isNameInferred": true,
+            "lineageTag": "6e61f30e-0a84-451c-9d58-df79f6b5fafd",
+            "sourceColumn": "[Date]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Año",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Year"
+              }
+            ],
+            "dataCategory": "Years",
+            "dataType": "int64",
+            "expression": "YEAR([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "e993f41b-02ec-42d1-827a-ef0b31b5ad5d",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroMes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "MonthNumber"
+              }
+            ],
+            "dataCategory": "MonthOfYear",
+            "dataType": "int64",
+            "expression": "MONTH([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "7d52d726-e56b-4e90-9d3c-19da28db6e18",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Mes",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Month"
+              }
+            ],
+            "dataCategory": "Months",
+            "dataType": "string",
+            "expression": "FORMAT([Date], \"MMMM\")",
+            "isHidden": true,
+            "lineageTag": "6dd084b6-418c-487f-9e65-8306f4302cd7",
+            "sortByColumn": "NroMes",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "NroTrimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "QuarterNumber"
+              }
+            ],
+            "dataCategory": "QuarterOfYear",
+            "dataType": "int64",
+            "expression": "INT(([NroMes] + 2) / 3)",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "d4239e8c-edd3-446c-be1e-4be7e4339bfe",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Trimestre",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Quarter"
+              }
+            ],
+            "dataCategory": "Quarters",
+            "dataType": "string",
+            "expression": "\"Trim. \" & [NroTrimestre]",
+            "isHidden": true,
+            "lineageTag": "a100899c-6eff-4f82-91bf-fa1eef0e0645",
+            "sortByColumn": "NroTrimestre",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Día",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "User"
+              },
+              {
+                "name": "TemplateId",
+                "value": "Day"
+              }
+            ],
+            "dataCategory": "DayOfMonth",
+            "dataType": "int64",
+            "expression": "DAY([Date])",
+            "formatString": "0",
+            "isHidden": true,
+            "lineageTag": "5e642eb7-0f77-484f-8d55-26294a33f653",
+            "summarizeBy": "none",
+            "type": "calculated"
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía de fechas",
+            "annotations": [
+              {
+                "name": "TemplateId",
+                "value": "DateHierarchy"
+              }
+            ],
+            "levels": [
+              {
+                "name": "Año",
+                "column": "Año",
+                "lineageTag": "41a823e9-5069-4a8d-a66e-05d980d12462",
+                "ordinal": 0
+              },
+              {
+                "name": "Trimestre",
+                "column": "Trimestre",
+                "lineageTag": "2234c6dd-c699-490c-add7-0ea9c7022b7e",
+                "ordinal": 1
+              },
+              {
+                "name": "Mes",
+                "column": "Mes",
+                "lineageTag": "e05120e3-84f5-404c-9420-35b2dadad6de",
+                "ordinal": 2
+              },
+              {
+                "name": "Día",
+                "column": "Día",
+                "lineageTag": "ce3e58b5-bc68-4b4b-913b-42f04b066ac2",
+                "ordinal": 3
+              }
+            ],
+            "lineageTag": "3a290bc6-b76d-41e6-83de-24b633ae427b"
+          }
+        ],
+        "isHidden": true,
+        "lineageTag": "1833a019-ddf8-4b42-a6ec-7f85677d3312",
+        "partitions": [
+          {
+            "name": "LocalDateTable_cf05f95e-28dd-4ff5-985c-ff219663170b",
+            "mode": "import",
+            "source": {
+              "expression": "Calendar(Date(Year(MIN('Reporte_Registro_Comunidades_Co'[Fecha Renovación Directiva])), 1, 1), Date(Year(MAX('Reporte_Registro_Comunidades_Co'[Fecha Renovación Directiva])), 12, 31))",
+              "type": "calculated"
+            }
+          }
+        ],
+        "showAsVariationsOnly": true
+      }
+    ]
+  }
+}

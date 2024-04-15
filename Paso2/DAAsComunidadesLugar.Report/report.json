@@ -1,0 +1,150 @@
+{
+  "config": "{\"version\":\"5.51\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.53\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "ReportSection",
+      "config": "{}",
+      "name": "Pod"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU02",
+            "path": "BaseThemes/CY24SU02.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"filterSortOrder\":1}",
+      "displayName": "Posiciones",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0420fa100b44a092ca17\",\"layouts\":[{\"id\":0,\"position\":{\"x\":850,\"y\":0,\"z\":4000,\"width\":430,\"height\":159,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Provincia\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Provincia)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"},\"Name\":\"DAAsComunidadesIndigenas (3).Provincia\",\"NativeReferenceName\":\"Provincia\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Provincia)\",\"NativeReferenceName\":\"Recuento de Provincia1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"labelStyle\":{\"expr\":{\"Literal\":{\"Value\":\"'Category, data value, percent of total'\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}},\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}}}}]}}}",
+          "height": 159.00,
+          "width": 430.00,
+          "x": 850.00,
+          "y": 0.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"155c0004e060a78ecb4a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":928,\"y\":472,\"z\":3000,\"width\":352,\"height\":248,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Cuenca \",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Cuenca )\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"},\"Name\":\"DAAsComunidadesIndigenas (3).Cuenca \",\"NativeReferenceName\":\"Cuenca \"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Cuenca )\",\"NativeReferenceName\":\"Recuento de Cuenca 1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 248.00,
+          "width": 352.00,
+          "x": 928.00,
+          "y": 472.00,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"3769d4c0d0bbd28164a5\",\"layouts\":[{\"id\":0,\"position\":{\"x\":850,\"y\":264,\"z\":8000,\"width\":430,\"height\":208,\"tabOrder\":8000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Naturaleza del Agua\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Naturaleza del Agua)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Naturaleza del Agua\"},\"Name\":\"DAAsComunidadesIndigenas (3).Naturaleza del Agua\",\"NativeReferenceName\":\"Naturaleza del Agua\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Naturaleza del Agua\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Naturaleza del Agua)\",\"NativeReferenceName\":\"Recuento de Naturaleza del Agua1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Naturaleza del Agua\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 208.00,
+          "width": 430.00,
+          "x": 850.00,
+          "y": 264.00,
+          "z": 8000.00
+        },
+        {
+          "config": "{\"name\":\"4a0ab04bbc6e30b021ab\",\"layouts\":[{\"id\":0,\"position\":{\"x\":225,\"y\":0,\"z\":1000,\"width\":368,\"height\":382,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Comuna\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Comuna)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"},\"Name\":\"DAAsComunidadesIndigenas (3).Comuna\",\"NativeReferenceName\":\"Comuna\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Comuna)\",\"NativeReferenceName\":\"Recuento de Comuna1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 382.00,
+          "width": 368.00,
+          "x": 225.00,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"6acca95c05700a15db4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":411,\"z\":2000,\"width\":245,\"height\":300,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Cuenca \"},{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Cuenca )\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"},\"Name\":\"DAAsComunidadesIndigenas (3).Cuenca \",\"NativeReferenceName\":\"Cuenca \"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Cuenca )\",\"NativeReferenceName\":\"Recuento de Cuenca \"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Cuenca \"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"103D\"}}}},\"selector\":{\"metadata\":\"DAAsComunidadesIndigenas (3).Cuenca \"}}]}}}",
+          "filters": "[]",
+          "height": 300.00,
+          "width": 245.00,
+          "x": 0.00,
+          "y": 411.00,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"9f49aae3130b8eb48225\",\"layouts\":[{\"id\":0,\"position\":{\"x\":245,\"y\":469,\"z\":7000,\"width\":605,\"height\":251,\"tabOrder\":7000}}],\"singleVisual\":{\"visualType\":\"pieChart\",\"projections\":{\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Ejercicio del Derecho\",\"active\":true}],\"Y\":[{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Ejercicio del Derecho)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Ejercicio del Derecho\"},\"Name\":\"DAAsComunidadesIndigenas (3).Ejercicio del Derecho\",\"NativeReferenceName\":\"Ejercicio del Derecho\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Ejercicio del Derecho\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Ejercicio del Derecho)\",\"NativeReferenceName\":\"Recuento de Ejercicio del Derecho1\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Ejercicio del Derecho\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 251.00,
+          "width": 605.00,
+          "x": 245.00,
+          "y": 469.00,
+          "z": 7000.00
+        },
+        {
+          "config": "{\"name\":\"b76b162072500aad7e95\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":225,\"height\":301,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Comuna\"},{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Comuna)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"},\"Name\":\"DAAsComunidadesIndigenas (3).Comuna\",\"NativeReferenceName\":\"Comuna\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Comuna)\",\"NativeReferenceName\":\"Recuento de Comuna\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Comuna\"}},\"Function\":5}}}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"columnWidth\":[{\"properties\":{\"value\":{\"expr\":{\"Literal\":{\"Value\":\"92D\"}}}},\"selector\":{\"metadata\":\"CountNonNull(DAAsComunidadesIndigenas (3).Comuna)\"}}]}}}",
+          "filters": "[]",
+          "height": 301.00,
+          "width": 225.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"c137a5b09a09e6da0539\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":301,\"z\":5000,\"width\":301,\"height\":110,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Provincia\"},{\"queryRef\":\"CountNonNull(DAAsComunidadesIndigenas (3).Provincia)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"},\"Name\":\"DAAsComunidadesIndigenas (3).Provincia\",\"NativeReferenceName\":\"Provincia\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"}},\"Function\":5},\"Name\":\"CountNonNull(DAAsComunidadesIndigenas (3).Provincia)\",\"NativeReferenceName\":\"Recuento de Provincia\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Provincia\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 110.00,
+          "width": 301.00,
+          "x": 0.00,
+          "y": 301.00,
+          "z": 5000.00
+        },
+        {
+          "config": "{\"name\":\"dffe2a208ed509e00331\",\"layouts\":[{\"id\":0,\"position\":{\"x\":574.6153846153846,\"y\":241.15384615384613,\"z\":9000,\"width\":249.23076923076923,\"height\":229.6153846153846,\"tabOrder\":9000}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Caudal AnualProm \"}},\"Function\":1},\"Name\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\",\"NativeReferenceName\":\"Promedio de Caudal AnualProm \"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Caudal AnualProm \"}},\"Function\":1}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"start\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 229.62,
+          "width": 249.23,
+          "x": 574.62,
+          "y": 241.15,
+          "z": 9000.00
+        },
+        {
+          "config": "{\"name\":\"e1b949b11c10235e4bd8\",\"layouts\":[{\"id\":0,\"position\":{\"x\":593,\"y\":0,\"z\":6000,\"width\":249,\"height\":239,\"tabOrder\":6000}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Caudal AnualProm \"}},\"Function\":0},\"Name\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\",\"NativeReferenceName\":\"Suma de Caudal AnualProm \"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"valueAxis\":[{\"properties\":{\"labelDisplayUnits\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"start\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 239.00,
+          "width": 249.00,
+          "x": 593.00,
+          "y": 0.00,
+          "z": 6000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Página 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection7538c17aa57b953bdeb0",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"438dec79bbb21008b198\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":580,\"height\":606}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\"}],\"Category\":[{\"queryRef\":\"DAAsComunidadesIndigenas (3).Nombre Solicitante\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"d\",\"Entity\":\"DAAsComunidadesIndigenas (3)\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Caudal AnualProm \"}},\"Function\":0},\"Name\":\"Sum(DAAsComunidadesIndigenas (3).Caudal AnualProm )\",\"NativeReferenceName\":\"Suma de Caudal AnualProm \"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Nombre Solicitante\"},\"Name\":\"DAAsComunidadesIndigenas (3).Nombre Solicitante\",\"NativeReferenceName\":\"Nombre Solicitante\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"d\"}},\"Property\":\"Caudal AnualProm \"}},\"Function\":0}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 606.00,
+          "width": 580.00,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}
